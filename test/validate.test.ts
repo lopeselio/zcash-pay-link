@@ -1,9 +1,9 @@
 import { test } from 'node:test';
 import assert from 'node:assert/strict';
-import { MAX_MEMO_BYTES, memoText, parsePaymentRequest } from 'zip321';
+import { MAX_MEMO_BYTES, memoText, parsePaymentRequest } from 'zcash-zip321';
 import { checkAmount, checkPayment, checkRequest, emptyPayment, utf8Length, type PaymentFields } from '../src/lib/validate.ts';
 import { describeAddress } from '../src/lib/describe.ts';
-import { decodeAddress } from 'zip321';
+import { decodeAddress } from 'zcash-zip321';
 import {
   EXAMPLE_T_MAIN,
   EXAMPLE_T_TEST,

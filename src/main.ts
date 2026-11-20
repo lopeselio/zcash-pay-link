@@ -1,5 +1,5 @@
 import './style.css';
-import { MAX_MEMO_BYTES } from 'zip321';
+import { MAX_MEMO_BYTES } from 'zcash-zip321';
 import { EXAMPLE_UA } from './lib/examples.ts';
 import { qrMatrix, qrSvg, svgDataUri, QrTooLongError, type QrMatrix } from './lib/qr.ts';
 import { buttonHtml, buttonTitle, markdownLink } from './lib/snippets.ts';

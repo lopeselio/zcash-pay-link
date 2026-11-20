@@ -1,6 +1,6 @@
 import { test } from 'node:test';
 import assert from 'node:assert/strict';
-import { parsePaymentRequest } from 'zip321';
+import { parsePaymentRequest } from 'zcash-zip321';
 import { buttonHtml, buttonTitle, escapeMarkdown, markdownLink } from '../src/lib/snippets.ts';
 import { escapeHtml } from '../src/lib/escape.ts';
 import { checkRequest, emptyPayment } from '../src/lib/validate.ts';

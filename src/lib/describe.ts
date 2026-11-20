@@ -1,4 +1,4 @@
-import type { DecodedAddress, Network } from 'zip321';
+import type { DecodedAddress, Network } from 'zcash-zip321';
 
 const KIND_NAMES: Record<DecodedAddress['kind'], string> = {
   unified: 'Unified Address',

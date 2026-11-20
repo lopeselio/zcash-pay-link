@@ -7,7 +7,7 @@ import {
   type DecodedAddress,
   type Network,
   type PaymentInput,
-} from 'zip321';
+} from 'zcash-zip321';
 import { describeAddress, describeNetworks } from './describe.ts';
 
 /** What the person typed for one recipient. Everything is a string, as in the form. */
