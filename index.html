@@ -1,0 +1,136 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="color-scheme" content="light dark" />
+    <meta name="description" content="Make Zcash payment links, QR codes and “Pay with Zcash” buttons for a donation page, tip jar or invoice. Runs entirely in your browser." />
+    <meta name="referrer" content="no-referrer" />
+    <title>Zcash Pay Link</title>
+    <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Ccircle cx='12' cy='12' r='11' fill='%23f4b728'/%3E%3Cpath d='M7.5 6.5h9v2.2l-6 6.6h6v2.2h-9v-2.2l6-6.6h-6z' fill='%231a1a1a'/%3E%3C/svg%3E" />
+  </head>
+  <body>
+    <a class="skip-link" href="#form-heading">Skip to the form</a>
+
+    <header class="site-header">
+      <div class="wrap">
+        <p class="brand"><span class="brand-mark" aria-hidden="true">Z</span> Zcash Pay Link</p>
+        <h1>Make a link, QR code or button that asks for a Zcash payment</h1>
+        <p class="lede">
+          For a donation page, tip jar or invoice. Fill in where the money should go; copy the link, QR code or
+          button. Everything happens in this page, which sends nothing anywhere.
+        </p>
+      </div>
+    </header>
+
+    <main class="wrap layout">
+      <section class="panel" aria-labelledby="form-heading">
+        <div class="panel-head">
+          <h2 id="form-heading" tabindex="-1">Payment details</h2>
+          <div class="head-actions">
+            <button type="button" class="btn btn-quiet" id="example">Fill in an example</button>
+            <button type="button" class="btn btn-quiet" id="reset">Start over</button>
+          </div>
+        </div>
+        <form id="form" novalidate>
+          <div id="payments"></div>
+          <button type="button" class="btn btn-secondary" id="add">
+            <span aria-hidden="true">+</span> Add another recipient
+          </button>
+          <p class="hint add-hint">One link can pay several people at once, if the payer’s wallet supports it.</p>
+
+          <fieldset class="options">
+            <legend>Button</legend>
+            <div class="field">
+              <label for="button-text">Button text</label>
+              <input id="button-text" type="text" placeholder="Pay with Zcash" maxlength="100" autocomplete="off" aria-describedby="button-text-hint" />
+              <p class="hint" id="button-text-hint">Optional, for example “Donate” or “Tip me”.</p>
+            </div>
+            <div class="check">
+              <input id="include-qr" type="checkbox" aria-describedby="include-qr-hint" />
+              <label for="include-qr">Show the QR code on the button</label>
+            </div>
+            <p class="hint" id="include-qr-hint">Lets people on a computer scan it with their phone wallet.</p>
+          </fieldset>
+        </form>
+      </section>
+
+      <section class="panel outputs" aria-labelledby="outputs-heading">
+        <h2 id="outputs-heading">Your payment link</h2>
+        <p id="status" class="status" role="status">Enter a Zcash address to get started.</p>
+
+        <div id="results" hidden>
+          <div class="output">
+            <div class="output-head">
+              <h3 id="uri-heading">Link</h3>
+              <button type="button" class="btn btn-small" data-copy="uri" aria-describedby="uri-heading">Copy</button>
+            </div>
+            <pre class="code" id="uri" aria-labelledby="uri-heading" tabindex="0"></pre>
+            <p class="hint"><a id="open-wallet" href="#">Open in my wallet</a> to check it.</p>
+          </div>
+
+          <div class="output">
+            <div class="output-head">
+              <h3 id="qr-heading">QR code</h3>
+              <div class="output-actions">
+                <button type="button" class="btn btn-small" id="download-png">Download PNG</button>
+                <button type="button" class="btn btn-small" id="download-svg">Download SVG</button>
+              </div>
+            </div>
+            <div id="qr" class="qr"></div>
+            <p id="qr-error" class="message error" hidden></p>
+          </div>
+
+          <div class="output">
+            <div class="output-head">
+              <h3 id="button-heading">“Pay with Zcash” button</h3>
+              <button type="button" class="btn btn-small" data-copy="button-html" aria-describedby="button-heading">Copy HTML</button>
+            </div>
+            <div class="preview" id="button-preview" aria-label="Button preview" role="group"></div>
+            <textarea class="code" id="button-html" rows="5" readonly aria-labelledby="button-heading" spellcheck="false"></textarea>
+            <p class="hint">Paste into any web page or site builder that accepts HTML. It has no scripts and loads nothing.</p>
+          </div>
+
+          <div class="output">
+            <div class="output-head">
+              <h3 id="markdown-heading">Markdown</h3>
+              <button type="button" class="btn btn-small" data-copy="markdown" aria-describedby="markdown-heading">Copy</button>
+            </div>
+            <pre class="code" id="markdown" aria-labelledby="markdown-heading" tabindex="0"></pre>
+            <p class="hint">Some sites, GitHub included, remove links that aren’t <code>https:</code>. Put the QR code next to it to be safe.</p>
+          </div>
+
+          <div class="output share">
+            <div class="output-head">
+              <h3 id="share-heading">Save this setup</h3>
+              <button type="button" class="btn btn-small" id="copy-setup" aria-describedby="share-heading">Copy setup link</button>
+            </div>
+            <p class="hint">The address bar now holds everything you entered, so you can bookmark this page and come back to edit it.</p>
+          </div>
+        </div>
+      </section>
+
+      <section class="panel about" aria-labelledby="how-heading">
+        <h2 id="how-heading">How it works</h2>
+        <ul>
+          <li>The link uses the <a href="https://zips.z.cash/zip-0321">ZIP-321</a> standard. Opening it, or scanning the QR code, opens the payer’s Zcash wallet with your details filled in. They check and send it there.</li>
+          <li>Nothing you type is sent anywhere. This page has no server, no analytics and makes no network requests; your setup lives only in the address bar.</li>
+          <li>It only needs your receiving address, never a seed phrase or private key. Don’t paste one here or anywhere else.</li>
+          <li>Prefer a shielded address (Unified or Sapling). Payments to transparent addresses can be seen by anyone.</li>
+        </ul>
+      </section>
+    </main>
+
+    <footer class="site-footer">
+      <div class="wrap">
+        <p>
+          Built on <a href="https://github.com/lopeselio/zip321-js">zip321</a>, a strict ZIP-321 library that checks every
+          address and link. <a href="https://github.com/lopeselio/zcash-pay-link">Source</a> · MIT licensed.
+        </p>
+      </div>
+    </footer>
+
+    <div id="announcer" class="visually-hidden" aria-live="polite"></div>
+    <script type="module" src="/src/main.ts"></script>
+  </body>
+</html>
