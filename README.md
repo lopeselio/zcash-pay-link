@@ -8,7 +8,7 @@ donation page, tip jar or invoice. A static page that runs entirely in your brow
 ## Features
 
 - One or more recipients in a single link (ZIP-321 multi-payment requests).
-- Live checks as you type, using [zip321](https://github.com/lopeselio/zip321-js): every address is decoded and
+- Live checks as you type, using [zcash-zip321](https://github.com/lopeselio/zcash-zip321): every address is decoded and
   checksummed and described ("Unified Address · mainnet · Orchard + Sapling + transparent receivers"). Amounts are
   optional, with at most 8 decimals and 21,000,000 ZEC. Memos have a UTF-8 byte counter against the 512-byte limit.
 - Warnings for transparent recipients (publicly visible) and test-network addresses. Mixing networks is an error, and
@@ -33,4 +33,4 @@ npm run check      # all of the above
 Logic (validation, URI building, snippets, QR, URL state) lives in `src/lib` and is tested with `node --test`;
 `src/main.ts` is the thin DOM layer. Pushes to `main` deploy to GitHub Pages.
 
-MIT licensed. Built on [zip321](https://github.com/lopeselio/zip321-js).
+MIT licensed. Built on [zcash-zip321](https://github.com/lopeselio/zcash-zip321).
